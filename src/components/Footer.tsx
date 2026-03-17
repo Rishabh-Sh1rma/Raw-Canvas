@@ -23,8 +23,8 @@ export function Footer() {
             <a href="/#contact" className="text-gray-400 hover:text-white transition-colors">Contact</a>
           </div>
           <div className="flex flex-col gap-4">
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">Instagram</a>
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">LinkedIn</a>
+            <a href="https://www.instagram.com/rawcanvas.ai/?hl=en" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">Instagram</a>
+            <a href="https://www.linkedin.com/company/raw-canvas-ai/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">LinkedIn</a>
           </div>
         </div>
       </div>

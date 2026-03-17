@@ -4,6 +4,7 @@
  */
 
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { Home } from "./pages/Home";
@@ -14,6 +15,10 @@ import { ThankYou } from "./pages/ThankYou";
 function AppLayout() {
   const location = useLocation();
   const isFunnelPage = ["/free-training", "/training-video", "/thank-you"].includes(location.pathname);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   return (
     <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-[#c2f2d0] selection:text-black">
