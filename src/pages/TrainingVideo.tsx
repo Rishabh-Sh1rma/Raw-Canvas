@@ -22,6 +22,8 @@ export function TrainingVideo() {
     const initPlayer = () => {
       playerRef.current = new window.YT.Player("yt-player", {
         videoId: "o94gxW8qU_8",
+        width: "100%",
+        height: "100%",
         playerVars: {
           rel: 0,          // no related videos at end
           modestbranding: 1,
@@ -160,8 +162,10 @@ export function TrainingVideo() {
           </h1>
 
           {/* YouTube Player */}
-          <div className="aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10">
-            <div id="yt-player" className="w-full h-full" />
+          <div className="aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10 relative">
+            <div className="absolute inset-0 w-full h-full">
+              <div id="yt-player" />
+            </div>
           </div>
         </motion.div>
 

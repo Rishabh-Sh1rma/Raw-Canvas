@@ -240,7 +240,7 @@ export function Home() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-32 px-6 bg-white/5 relative">
+      <section id="testimonials" className="py-32 px-6 bg-white/5 relative">
         <motion.div 
           animate={{ 
             scale: [1, 1.1, 1],

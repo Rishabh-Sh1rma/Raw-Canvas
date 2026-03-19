@@ -52,7 +52,7 @@ export function ThankYou() {
           transition={{ duration: 0.6, delay: 0.3 }}
         >
           <Link 
-            to="/" 
+            to="/#testimonials" 
             className="bg-[#c2f2d0] text-black px-8 py-4 rounded-full font-medium text-lg hover:bg-[#a7e8b9] transition-colors inline-flex items-center gap-2"
           >
             View more case studies

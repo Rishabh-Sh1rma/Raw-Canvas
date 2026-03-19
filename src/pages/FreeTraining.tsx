@@ -305,7 +305,7 @@ export function FreeTraining() {
             className="mt-16 text-center"
           >
             <button 
-              onClick={() => navigate('/')}
+              onClick={() => navigate('/#testimonials')}
               className="px-8 py-4 rounded-full border border-white/20 text-white hover:bg-white hover:text-black transition-colors inline-flex items-center gap-2 font-medium"
             >
               View more testimonials on our website

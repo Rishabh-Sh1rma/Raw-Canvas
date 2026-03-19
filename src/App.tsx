@@ -17,8 +17,18 @@ function AppLayout() {
   const isFunnelPage = ["/free-training", "/training-video", "/thank-you"].includes(location.pathname);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location.pathname]);
+    if (location.hash) {
+      const element = document.getElementById(location.hash.slice(1));
+      if (element) {
+        // Use setTimeout to ensure the DOM is ready
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname, location.hash]);
 
   return (
     <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-[#c2f2d0] selection:text-black">
