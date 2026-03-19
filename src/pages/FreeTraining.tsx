@@ -33,6 +33,10 @@ export function FreeTraining() {
         mode: 'no-cors'
       });
 
+      if (window.fbq) {
+        window.fbq('track', 'Lead');
+      }
+
       navigate('/training-video');
     } catch (error) {
       console.error('Error submitting form:', error);

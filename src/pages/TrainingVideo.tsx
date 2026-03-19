@@ -20,6 +20,9 @@ export function TrainingVideo() {
     const handleMessage = (e: MessageEvent) => {
       if (isCalendlyEvent(e)) {
         if (e.data.event === 'calendly.event_scheduled') {
+          if (window.fbq) {
+            window.fbq('track', 'Schedule');
+          }
           navigate('/thank-you');
         }
       }
