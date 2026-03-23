@@ -81,7 +81,7 @@ export function FreeTraining() {
               Free Training Video
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight leading-[1.1] mb-6">
-              We will build you a organic + Paid ads funnel that will book you <span className="text-[#c2f2d0]">10+ calls per month</span>. If we don't, you don't pay us.
+              We will build you a organic + Paid ads funnel that will book you <span className="text-[#c2f2d0]">10+ qualified appointments per month</span>.
             </h1>
             <p className="text-xl text-gray-400 italic">
               (Without Cold Calling, Networking, Relying on Referrals or any of that stuff...)
@@ -140,7 +140,8 @@ export function FreeTraining() {
           className="bg-white/5 border border-white/10 rounded-3xl p-8 md:p-10 backdrop-blur-sm"
         >
           <div className="text-center mb-8">
-            <h2 className="text-2xl font-medium tracking-tight uppercase">Where should we send the video?</h2>
+            <h2 className="text-2xl font-medium tracking-tight uppercase mb-2">WATCH THE FREE TRAINING</h2>
+            <p className="text-gray-400">See exactly how it works — enter your details below.</p>
           </div>
 
           <form className="space-y-6" onSubmit={handleSubmit}>
