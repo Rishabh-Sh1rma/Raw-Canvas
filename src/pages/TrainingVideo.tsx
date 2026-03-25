@@ -6,6 +6,10 @@ import { SimpleFooter } from "../components/SimpleFooter";
 import { Logo } from "../components/Logo";
 
 declare global {
+  interface Window {
+    fbq?: any;
+    _wq?: any[];
+  }
   namespace JSX {
     interface IntrinsicElements {
       'wistia-player': any;
@@ -28,6 +32,31 @@ export function TrainingVideo() {
     wistiaEmbedScript.async = true;
     wistiaEmbedScript.type = "module";
     document.body.appendChild(wistiaEmbedScript);
+
+    // Wistia Tracking
+    window._wq = window._wq || [];
+    window._wq.push({
+      id: "occcm1oal3",
+      onReady: function (video: any) {
+        let tracked50 = false;
+        let tracked70 = false;
+
+        video.bind("percentwatchedchanged", function (percent: number) {
+          if (percent >= 0.5 && !tracked50) {
+            tracked50 = true;
+            if (window.fbq) {
+              window.fbq("trackCustom", "VSL 50");
+            }
+          }
+          if (percent >= 0.7 && !tracked70) {
+            tracked70 = true;
+            if (window.fbq) {
+              window.fbq("trackCustom", "VSL 70");
+            }
+          }
+        });
+      },
+    });
 
     // ── Calendly ───────────────────────────────────────────────────
     const calendlyScript = document.createElement("script");
