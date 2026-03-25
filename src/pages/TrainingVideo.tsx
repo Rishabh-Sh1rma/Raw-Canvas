@@ -8,7 +8,6 @@ import { Logo } from "../components/Logo";
 declare global {
   interface Window {
     fbq?: any;
-    _wq?: any[];
   }
   namespace JSX {
     interface IntrinsicElements {
@@ -34,29 +33,35 @@ export function TrainingVideo() {
     document.body.appendChild(wistiaEmbedScript);
 
     // Wistia Tracking
-    window._wq = window._wq || [];
-    window._wq.push({
-      id: "occcm1oal3",
-      onReady: function (video: any) {
-        let tracked50 = false;
-        let tracked70 = false;
+    let trackingTimeout: NodeJS.Timeout;
+    const setupWistiaTracking = () => {
+      const player = document.querySelector('wistia-player[media-id="occcm1oal3"]') as any;
+      
+      if (!player) {
+        trackingTimeout = setTimeout(setupWistiaTracking, 500);
+        return;
+      }
 
-        video.bind("percentwatchedchanged", function (percent: number) {
-          if (percent >= 0.5 && !tracked50) {
-            tracked50 = true;
-            if (window.fbq) {
-              window.fbq("trackCustom", "VSL_50");
-            }
-          }
-          if (percent >= 0.7 && !tracked70) {
-            tracked70 = true;
-            if (window.fbq) {
-              window.fbq("trackCustom", "VSL_70");
-            }
-          }
-        });
-      },
-    });
+      let tracked50 = false;
+      let tracked70 = false;
+
+      player.addEventListener('percentwatchedchanged', (e: CustomEvent) => {
+        const percent = e.detail.percent;
+
+        if (percent >= 0.5 && !tracked50) {
+          tracked50 = true;
+          if (window.fbq) window.fbq('trackCustom', 'VSL_50');
+        }
+
+        if (percent >= 0.7 && !tracked70) {
+          tracked70 = true;
+          if (window.fbq) window.fbq('trackCustom', 'VSL_70');
+        }
+      });
+    };
+
+    // Start after scripts load
+    trackingTimeout = setTimeout(setupWistiaTracking, 2000);
 
     // ── Calendly ───────────────────────────────────────────────────
     const calendlyScript = document.createElement("script");
@@ -83,6 +88,7 @@ export function TrainingVideo() {
 
     // ── Cleanup ────────────────────────────────────────────────────
     return () => {
+      clearTimeout(trackingTimeout);
       window.removeEventListener("message", handleMessage);
       if (document.body.contains(calendlyScript)) {
         document.body.removeChild(calendlyScript);
