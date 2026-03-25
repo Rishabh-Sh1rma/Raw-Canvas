@@ -45,13 +45,13 @@ export function TrainingVideo() {
           if (percent >= 0.5 && !tracked50) {
             tracked50 = true;
             if (window.fbq) {
-              window.fbq("trackCustom", "VSL 50");
+              window.fbq("trackCustom", "VSL_50");
             }
           }
           if (percent >= 0.7 && !tracked70) {
             tracked70 = true;
             if (window.fbq) {
-              window.fbq("trackCustom", "VSL 70");
+              window.fbq("trackCustom", "VSL_70");
             }
           }
         });
