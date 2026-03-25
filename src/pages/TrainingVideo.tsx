@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { Star, ArrowRight } from "lucide-react";
+import { Star, ArrowRight, TrendingUp } from "lucide-react";
 import { SimpleFooter } from "../components/SimpleFooter";
 import { Logo } from "../components/Logo";
 
@@ -68,13 +68,30 @@ export function TrainingVideo() {
   }, [navigate]);
 
   return (
-    <div className="bg-[#050505] min-h-screen text-white pt-20 flex flex-col relative overflow-hidden">
+    <div className="bg-[#050505] min-h-screen text-white pt-36 flex flex-col relative overflow-hidden">
       {/* ── HEADER ── */}
-      <header className="absolute top-0 left-0 right-0 z-50 py-6 px-4 flex justify-center">
-        <Link to="/" className="flex items-center gap-2 text-white font-semibold text-xl tracking-tight">
+      <header className="absolute top-0 left-0 right-0 z-50 py-6 px-4 flex flex-col items-center gap-4">
+        <div className="flex items-center gap-2 text-white font-semibold text-xl tracking-tight">
           <Logo className="w-8 h-8" />
           Rawcanvas
-        </Link>
+        </div>
+        <div className="flex items-center gap-3 justify-center">
+          <div className="flex -space-x-2">
+            {['justin-dry', 'luke-divas', 'miguel', 'arun'].map((name, i) => (
+              <div key={i} className="w-8 h-8 rounded-full border-2 border-[#050505] bg-white/10 overflow-hidden">
+                <img
+                  src={`https://i.ibb.co/${name === 'justin-dry' ? 'XxXBZvpB/justin-dry' : name === 'luke-divas' ? 'q9GQzSy/luke-divas' : name === 'miguel' ? 'spC40Kt9/miguel' : '232jFWS0/arun'}.jpg`}
+                  alt=""
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+            ))}
+          </div>
+          <p className="text-sm text-gray-400">
+            <span className="text-white font-medium">200+ founders</span> already inside
+          </p>
+        </div>
       </header>
 
       {/* Background Glow */}
@@ -134,45 +151,69 @@ export function TrainingVideo() {
               Step 2
             </h2>
             <h1 className="text-3xl md:text-5xl font-medium tracking-tight mb-4">
-              SEE WHAT OTHERS SAY
+              REAL RESULTS
             </h1>
+            <p className="text-xl text-gray-400 mb-8">
+              Founders Who Built the Same System
+            </p>
+
+            {/* Stat strip */}
+            <div className="grid grid-cols-3 gap-3 pt-6 border-t border-white/10 max-w-2xl mx-auto">
+              {[
+                { value: "200%", label: "Booking increase" },
+                { value: "10–20", label: "Qualified calls/mo" },
+                { value: "28+", label: "Countries served" },
+              ].map((s, i) => (
+                <div key={i} className="text-center">
+                  <div className="text-xl sm:text-2xl font-semibold text-[#c2f2d0]">{s.value}</div>
+                  <div className="text-xs text-gray-500 mt-0.5">{s.label}</div>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {[
               {
-                quote: "Rawcanvas helped us bring clarity to our content and growth efforts. Their work strengthened our positioning and supported steady momentum across campaigns.",
-                name: "Justin Dry",
-                role: "Co-founder & CEO, Vinomofo",
-                image: "https://i.ibb.co/XxXBZvpB/justin-dry.jpg"
-              },
-              {
                 quote: "Our BMB Workshop saw a 200% increase in bookings, and for the first time, my DMs are filled with pre-qualified leads. If you're serious about scaling your brand, Pulkit and his team are the only ones I'd trust.",
                 name: "Luke Davis",
                 role: "Founder — Bull Market Blueprint",
+                metric: "200% more qualified bookings",
                 image: "https://i.ibb.co/q9GQzSy/luke-divas.jpg"
               },
               {
                 quote: "The biggest bottleneck in my practice was the 'Complexity Gap'. Raw Canvas solved this by turning our clinical results into cinematic educational assets — giving us better leads who were pre-educated and ready to book.",
                 name: "Dr. Miguel Mascaró, MD",
                 role: "Florida, USA",
+                metric: "Pre-qualified leads on demand",
                 image: "https://i.ibb.co/spC40Kt9/miguel.jpg"
+              },
+              {
+                quote: "Rawcanvas helped us bring clarity to our content and growth efforts. Their work strengthened our positioning and supported steady momentum across campaigns.",
+                name: "Justin Dry",
+                role: "Co-founder & CEO, Vinomofo",
+                metric: "Consistent growth & clarity",
+                image: "https://i.ibb.co/XxXBZvpB/justin-dry.jpg"
               }
             ].map((t, i) => (
               <div
                 key={i}
-                className="bg-white/3 border border-white/8 rounded-2xl p-5 flex flex-col"
+                className="bg-white/3 border border-white/10 rounded-2xl p-6 flex flex-col"
               >
-                <div className="flex gap-0.5 mb-3">
-                  {[...Array(5)].map((_, s) => <Star key={s} className="w-3.5 h-3.5 fill-[#c2f2d0] text-[#c2f2d0]" />)}
+                <div className="flex gap-0.5 mb-4">
+                  {[...Array(5)].map((_, s) => <Star key={s} className="w-4 h-4 fill-[#c2f2d0] text-[#c2f2d0]" />)}
                 </div>
-                <p className="text-gray-400 text-sm leading-relaxed mb-4 flex-grow">"{t.quote}"</p>
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full overflow-hidden bg-white/10 flex-shrink-0">
+                <div className="inline-flex items-center gap-2 bg-[#c2f2d0]/10 border border-[#c2f2d0]/20 rounded-full px-3 py-1 mb-4 w-fit">
+                  <TrendingUp className="w-3 h-3 text-[#c2f2d0]" />
+                  <span className="text-[#c2f2d0] text-xs font-semibold">{t.metric}</span>
+                </div>
+                <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-6 flex-grow">"{t.quote}"</p>
+                <div className="flex items-center gap-3 pt-4 border-t border-white/10">
+                  <div className="w-11 h-11 rounded-full overflow-hidden bg-white/10 flex-shrink-0">
                     <img src={t.image} alt={t.name} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                   </div>
                   <div>
-                    <div className="text-sm font-medium text-white">{t.name}</div>
+                    <div className="font-semibold text-white text-sm">{t.name}</div>
                     <div className="text-xs text-gray-500">{t.role}</div>
                   </div>
                 </div>
@@ -205,27 +246,6 @@ export function TrainingVideo() {
               style={{ minWidth: "320px", height: "700px" }}
             />
           </div>
-        </motion.div>
-
-        {/* Step 4: Back to Website */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-20 text-center border-t border-white/10 pt-16"
-        >
-          <h2 className="text-2xl md:text-3xl font-medium tracking-tight mb-4">
-            Want to see more?
-          </h2>
-          <p className="text-gray-400 mb-8 max-w-lg mx-auto">
-            Check out our website for more testimonials, case studies, and a detailed breakdown of our process.
-          </p>
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-medium px-6 py-3 rounded-xl transition-colors"
-          >
-            Visit Full Website <ArrowRight className="w-4 h-4" />
-          </Link>
         </motion.div>
       </div>
 
